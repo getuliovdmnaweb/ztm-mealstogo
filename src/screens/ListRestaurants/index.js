@@ -3,16 +3,12 @@ import React from "react";
 import { Searchbar } from "react-native-paper";
 
 import { RestaurantInfo } from "../../components";
-
-import {
-  Container,
-  SearchContainer,
-  ProductList,
-} from "./list-restaurants.styled";
+import { SafeArea } from "../../components/utils";
+import { SearchContainer, ProductList } from "./list-restaurants.styled";
 
 const ListRestaurants = () => {
   return (
-    <Container>
+    <SafeArea>
       <SearchContainer>
         <Searchbar placeholder="Search" />
       </SearchContainer>
@@ -21,7 +17,7 @@ const ListRestaurants = () => {
         data={[{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }, { name: 5 }]}
         renderItem={() => <RestaurantInfo />}
       />
-    </Container>
+    </SafeArea>
   );
 };
 

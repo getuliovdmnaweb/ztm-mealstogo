@@ -6,8 +6,9 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
+import { NavigationContainer } from "@react-navigation/native";
 
-import { ListRestaurants } from "./src/screens";
+import { TabNavigator } from "./src/navigators";
 import { theme } from "./src/theme";
 
 export default function App() {
@@ -25,10 +26,12 @@ export default function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <ListRestaurants />
-      </ThemeProvider>
-      <ExpoStatusBar style="auto" />
+      <NavigationContainer>
+        <ThemeProvider theme={theme}>
+          <TabNavigator />
+        </ThemeProvider>
+        <ExpoStatusBar style="auto" />
+      </NavigationContainer>
     </>
   );
 }
