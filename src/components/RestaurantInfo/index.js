@@ -1,48 +1,19 @@
 import React from "react";
-import { Text, Image } from "react-native";
-import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
-import styled from "styled-components/native";
 
+import { Text } from "../../components/typography";
 import open from "../../../assets/open";
 import star from "../../../assets/star";
 
-const RestaurantCard = styled(Card)`
-  padding: ${(props) => props.theme.space[3]};
-`;
-
-const RestaurantCover = styled(Card.Cover)`
-  margin-bottom: ${(props) => props.theme.space[3]};
-`;
-
-const Title = styled.Text`
-  margin-bottom: ${(props) => props.theme.space[1]};
-  color: ${(props) => props.theme.colors.text.primary};
-  font-family: ${(props) => props.theme.fonts.heading};
-`;
-
-const Address = styled.Text`
-  color: ${(props) => props.theme.colors.text.primary};
-  font-family: ${(props) => props.theme.fonts.body};
-  font-size: ${(props) => props.theme.fontSizes.caption};
-  font-weight: ${(props) => props.theme.fontWeights.bold};
-`;
-
-const Rating = styled.View`
-  flex: 1;
-  flex-direction: row;
-`;
-
-const Section = styled.View`
-  flex-direction: row;
-  margin-bottom: ${(props) => props.theme.space[1]};
-`;
-const SectionEnd = styled.View`
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
+import {
+  RestaurantCard,
+  RestaurantCover,
+  Section,
+  Rating,
+  Address,
+  SectionEnd,
+  Icon,
+} from "./restaurant-info.styled";
 
 const RestaurantInfo = ({ restaurant = {} }) => {
   const {
@@ -62,7 +33,7 @@ const RestaurantInfo = ({ restaurant = {} }) => {
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCover source={{ uri: photos[0] }} />
-      <Title>{name}</Title>
+      <Text variant="label">{name}</Text>
       <Section>
         <Rating>
           {ratingArray.map((_, index) => (
@@ -71,12 +42,10 @@ const RestaurantInfo = ({ restaurant = {} }) => {
         </Rating>
         <SectionEnd>
           {isClosedTemporarily && (
-            <Text variant="label" style={{ fontSize: 12, color: "red" }}>
-              CLOSED TEMPORARILY
-            </Text>
+            <Text variant="error">CLOSED TEMPORARILY</Text>
           )}
           {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-          <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
+          <Icon source={{ uri: icon }} />
         </SectionEnd>
       </Section>
 
