@@ -31,13 +31,13 @@ export const Section = styled.View`
 `;
 
 export const SectionEnd = styled.View`
-  flex: 1;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const Icon = styled.Image`
+  margin-left: ${(props) => props.theme.space[3]};
   width: ${({ theme }) => theme.sizes[1]};
   height: ${({ theme }) => theme.sizes[1]};
 `;

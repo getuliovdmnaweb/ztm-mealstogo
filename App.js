@@ -10,6 +10,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { TabNavigator } from "./src/navigators";
 import { theme } from "./src/theme";
+import { RestaurantsProvider } from "./src/services/restaurants/context";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -27,9 +28,11 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <ThemeProvider theme={theme}>
-          <TabNavigator />
-        </ThemeProvider>
+        <RestaurantsProvider>
+          <ThemeProvider theme={theme}>
+            <TabNavigator />
+          </ThemeProvider>
+        </RestaurantsProvider>
         <ExpoStatusBar style="auto" />
       </NavigationContainer>
     </>

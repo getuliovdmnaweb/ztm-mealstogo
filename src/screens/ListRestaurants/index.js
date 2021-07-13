@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Searchbar } from "react-native-paper";
 
 import { RestaurantInfo } from "../../components";
 import { SafeArea } from "../../components/utils";
-import { SearchContainer, ProductList } from "./list-restaurants.styled";
+import { RestaurantsContext } from "../../services/restaurants/context";
+import {
+  SearchContainer,
+  ProductList,
+  StyledActivity,
+} from "./list-restaurants.styled";
 
 const ListRestaurants = () => {
+  const { loadingRestaurants, error, restaurants } =
+    useContext(RestaurantsContext);
+
   return (
     <SafeArea>
       <SearchContainer>
         <Searchbar placeholder="Search" />
       </SearchContainer>
-      <ProductList
-        keyExtractor={(item) => item.name.toString()}
-        data={[{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }, { name: 5 }]}
-        renderItem={() => <RestaurantInfo />}
-      />
+      {loadingRestaurants ? (
+        <StyledActivity animating={true} size={50} />
+      ) : (
+        <ProductList
+          keyExtractor={(item) => item.name.toString()}
+          data={restaurants}
+          renderItem={({ item }) => <RestaurantInfo restaurant={item} />}
+        />
+      )}
     </SafeArea>
   );
 };

@@ -1,3 +1,4 @@
+import { ActivityIndicator } from "react-native-paper";
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
 
@@ -10,3 +11,7 @@ export const ProductList = styled(FlatList).attrs({
     padding: 16,
   },
 })``;
+
+export const StyledActivity = styled(ActivityIndicator).attrs(({ theme }) => ({
+  color: theme.colors.ui.primary,
+}))``;
